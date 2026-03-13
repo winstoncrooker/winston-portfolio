@@ -78,9 +78,9 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo / Name */}
-          <span className="text-sm font-semibold text-foreground tracking-wide">
-            WC
+          {/* Terminal-style logo */}
+          <span className="font-mono text-sm text-muted">
+            winston<span className="text-purple">:~$</span>
           </span>
 
           {/* Desktop nav links */}

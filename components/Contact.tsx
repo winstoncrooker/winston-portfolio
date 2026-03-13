@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 const contactLinks = [
   {
     label: "Email",
-    value: "winstoncrooker8@gmail.com",
-    href: "mailto:winstoncrooker8@gmail.com",
+    value: "winstoncrooker@outlook.com",
+    href: "mailto:winstoncrooker@outlook.com",
   },
   {
     label: "GitHub",
@@ -15,8 +15,14 @@ const contactLinks = [
     external: true,
   },
   {
+    label: "LinkedIn",
+    value: "Winston Crooker",
+    href: "https://www.linkedin.com/in/winston-crooker-758354325/",
+    external: true,
+  },
+  {
     label: "Discord",
-    value: "winston",
+    value: "mashedman",
     href: null,
   },
 ];
@@ -31,6 +37,7 @@ export default function Contact() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
+        <span className="text-muted/30 font-mono font-normal">$ </span>
         Get in Touch
       </motion.h2>
 
@@ -44,7 +51,7 @@ export default function Contact() {
           <div className="space-y-4">
             {contactLinks.map((link) => (
               <div key={link.label} className="flex items-baseline gap-4">
-                <span className="text-sm text-muted w-16 shrink-0">
+                <span className="text-sm text-muted w-20 shrink-0">
                   {link.label}
                 </span>
                 {link.href ? (
@@ -52,12 +59,12 @@ export default function Contact() {
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
-                    className="text-sm text-foreground hover:text-purple transition-colors"
+                    className="text-sm text-foreground hover:text-purple transition-colors font-mono"
                   >
                     {link.value}
                   </a>
                 ) : (
-                  <span className="text-sm text-foreground">{link.value}</span>
+                  <span className="text-sm text-foreground font-mono">{link.value}</span>
                 )}
               </div>
             ))}
@@ -76,7 +83,7 @@ export default function Contact() {
           Have a project idea? Let&apos;s talk.
         </p>
         <a
-          href="mailto:winstoncrooker8@gmail.com"
+          href="mailto:winstoncrooker@outlook.com"
           className="inline-flex px-6 py-3 bg-purple text-white text-sm rounded-lg hover:bg-purple-dark transition-all duration-200"
         >
           Send a message

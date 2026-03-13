@@ -43,12 +43,12 @@ export default function Hero() {
         </motion.p>
 
         <motion.p
-          className="mt-3 md:mt-4 text-sm md:text-base lg:text-lg text-muted"
+          className="mt-3 md:mt-4 text-sm md:text-base lg:text-lg text-muted font-mono"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.6, ease: "easeOut" }}
         >
-          I build things that work.
+          Building with AI, shipping for real.
         </motion.p>
       </div>
 

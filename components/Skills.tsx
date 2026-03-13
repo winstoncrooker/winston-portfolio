@@ -15,6 +15,27 @@ interface SkillCategory {
 
 const categories: SkillCategory[] = [
   {
+    label: "AI & Tools",
+    skills: [
+      { name: "Claude Code", color: "#8b5cf6" },
+      { name: "AI-Assisted Dev", color: "#22c55e" },
+      { name: "Prompt Engineering", color: "#a78bfa" },
+      { name: "Vercel", color: "#ffffff" },
+      { name: "Git", color: "#f05032" },
+      { name: "Linux", color: "#fcc624" },
+    ],
+  },
+  {
+    label: "Web",
+    skills: [
+      { name: "React", color: "#61dafb" },
+      { name: "Next.js", color: "#ffffff" },
+      { name: "Node.js", color: "#339933" },
+      { name: "Tailwind CSS", color: "#06b6d4" },
+      { name: "Framer Motion", color: "#ff0055" },
+    ],
+  },
+  {
     label: "Languages",
     skills: [
       { name: "JavaScript", color: "#f7df1e" },
@@ -22,26 +43,6 @@ const categories: SkillCategory[] = [
       { name: "Python", color: "#3776ab" },
       { name: "HTML", color: "#e34f26" },
       { name: "CSS", color: "#1572b6" },
-    ],
-  },
-  {
-    label: "Frameworks & Tools",
-    skills: [
-      { name: "React", color: "#61dafb" },
-      { name: "Next.js", color: "#ffffff" },
-      { name: "Node.js", color: "#339933" },
-      { name: "Tailwind CSS", color: "#06b6d4" },
-      { name: "Git", color: "#f05032" },
-      { name: "Framer Motion", color: "#ff0055" },
-    ],
-  },
-  {
-    label: "Other",
-    skills: [
-      { name: "Claude Code", color: "#8b5cf6" },
-      { name: "AI-Assisted Dev", color: "#22c55e" },
-      { name: "Vercel", color: "#ffffff" },
-      { name: "Linux", color: "#fcc624" },
     ],
   },
 ];
@@ -58,6 +59,7 @@ export default function Skills() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
+        <span className="text-muted/30 font-mono font-normal">$ </span>
         Skills
       </motion.h2>
 
@@ -65,7 +67,7 @@ export default function Skills() {
         const categoryBlock = (
           <div key={category.label} className="mb-6">
             <motion.p
-              className="text-muted text-sm uppercase tracking-wider mb-3"
+              className="text-muted text-sm uppercase tracking-wider mb-3 font-mono"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}

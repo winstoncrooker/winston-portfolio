@@ -6,23 +6,23 @@ import TimelineItem from "./TimelineItem";
 const experiences = [
   {
     year: "2024 - Present",
-    title: "Independent Developer",
+    title: "AI-Assisted Developer",
     description:
-      "Building full-stack applications, automation tools, and exploring AI-assisted development workflows. Shipped multiple projects using Claude Code.",
+      "Building full-stack applications by directing AI agents. Shipped multiple projects using Claude Code as the primary development tool. Focuses on architecture, debugging, and project management while AI handles implementation.",
     isLeft: true,
   },
   {
-    year: "2023 - 2024",
-    title: "Learning & Building",
+    year: "Summer 2024",
+    title: "Cybersecurity Camp",
     description:
-      "Deep dive into web development. Learned React, Next.js, TypeScript, and modern deployment pipelines.",
+      "Attended a cybersecurity camp, learned security fundamentals, network analysis, and defensive techniques. Sparked deeper interest in tech and building.",
     isLeft: false,
   },
   {
-    year: "2022 - 2023",
-    title: "Getting Started",
+    year: "2023 - 2024",
+    title: "Learning & Exploring",
     description:
-      "First lines of code. Started with Python and JavaScript, building small scripts and Discord bots.",
+      "Picked up basics of HTML, CSS, and Python. Started exploring what's possible with AI tools for development. Built small scripts and Discord bots.",
     isLeft: true,
   },
 ];
@@ -37,6 +37,7 @@ export default function Experience() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
+        <span className="text-muted/30 font-mono font-normal">$ </span>
         Experience
       </motion.h2>
 

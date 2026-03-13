@@ -3,9 +3,9 @@
 import { motion } from "framer-motion";
 
 const stats = [
-  { label: "Projects Shipped", value: "10+" },
-  { label: "Languages", value: "5+" },
-  { label: "Favorite Stack", value: "Next.js + Tailwind" },
+  { label: "Approach", value: "AI-Assisted" },
+  { label: "Projects Shipped", value: "5+" },
+  { label: "Primary Tool", value: "Claude Code" },
   { label: "Status", value: "Building" },
 ];
 
@@ -23,15 +23,22 @@ export default function About() {
           <p className="text-base leading-relaxed text-muted">
             Hey, I&apos;m{" "}
             <span className="text-foreground font-medium">Winston</span>. I&apos;m
-            a developer who builds things &mdash; websites, tools, automations.
-            I work fast and ship faster.
+            a builder who ships real products by directing AI. I understand systems,
+            architecture, and can debug code &mdash; I just let AI handle the typing.
+            Think of me as the architect, not the typist.
           </p>
           <p className="text-base leading-relaxed text-muted mt-4">
-            Most of what you see here was built with{" "}
+            I got into tech through a{" "}
+            <span className="text-purple-light font-medium">
+              cybersecurity camp in summer 2024
+            </span>
+            , learned the fundamentals, and realized the fastest path to building
+            was{" "}
             <span className="text-purple-light font-medium">
               AI-assisted development
             </span>
-            , because the future is about what you build, not how you type it.
+            . Now I use tools like Claude Code to go from idea to deployed product &mdash;
+            fast.
           </p>
         </div>
       </motion.div>
@@ -49,7 +56,7 @@ export default function About() {
               key={stat.label}
               className="bg-card rounded-xl border border-card-border p-5 hover:border-purple/30 hover:shadow-lg hover:shadow-purple/5 transition-all duration-300"
             >
-              <p className="text-lg sm:text-xl font-semibold text-foreground">
+              <p className="text-lg sm:text-xl font-semibold text-foreground font-mono">
                 {stat.value}
               </p>
               <p className="mt-1 text-xs sm:text-sm text-muted">{stat.label}</p>

@@ -30,7 +30,7 @@ export default function SkillBadge({ name, color, index }: SkillBadgeProps) {
         className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
         style={{ backgroundColor: color }}
       />
-      <span className="text-sm text-foreground">{name}</span>
+      <span className="text-sm text-foreground font-mono">{name}</span>
     </motion.span>
   );
 }
