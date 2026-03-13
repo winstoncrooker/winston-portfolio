@@ -8,7 +8,7 @@ const experiences = [
     year: "2024 - Present",
     title: "AI-Assisted Developer",
     description:
-      "Building full-stack applications by directing AI agents. Shipped multiple projects using Claude Code as the primary development tool. Focuses on architecture, debugging, and project management while AI handles implementation.",
+      "Building and shipping full-stack applications by directing AI agents. Created OptionsOn PremiumTracker (optionson.top), ClosetAI (closetai.pages.dev), and multiple automation tools using Claude Code as the primary development engine.",
     isLeft: true,
   },
   {
@@ -22,7 +22,7 @@ const experiences = [
     year: "2023 - 2024",
     title: "Learning & Exploring",
     description:
-      "Picked up basics of HTML, CSS, and Python. Started exploring what's possible with AI tools for development. Built small scripts and Discord bots.",
+      "Picked up HTML, CSS, and Python basics. Built Discord bots and small automation scripts. Discovered AI-assisted development and started building real projects.",
     isLeft: true,
   },
 ];

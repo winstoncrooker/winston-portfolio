@@ -50,6 +50,24 @@ export default function Hero() {
         >
           Building with AI, shipping for real.
         </motion.p>
+
+        {/* Currently building badge */}
+        <motion.div
+          className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-card-border bg-card/80 backdrop-blur-sm"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.9, ease: "easeOut" }}
+        >
+          <motion.span
+            className="w-2 h-2 rounded-full bg-green"
+            animate={{ opacity: [1, 0.4, 1] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <span className="text-xs text-muted font-mono">
+            Currently building:{" "}
+            <span className="text-purple-light">OptionsOn</span>
+          </span>
+        </motion.div>
       </div>
 
       {/* Animated down arrow */}
