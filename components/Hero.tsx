@@ -65,7 +65,7 @@ export default function Hero() {
           />
           <span className="text-xs text-muted font-mono">
             Currently building:{" "}
-            <span className="text-purple-light">OptionsOn</span>
+            <span className="text-purple-light">ClosetAI</span>
           </span>
         </motion.div>
       </div>
