@@ -1,15 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0a0a0f;
-  --color-foreground: #e0e0e8;
+  --color-background: #0b0b11;
+  --color-foreground: #e2e8f0;
   --color-purple: #8b5cf6;
   --color-purple-dark: #6d28d9;
   --color-purple-light: #a78bfa;
   --color-green: #22c55e;
-  --color-green-dark: #16a34a;
-  --color-muted: #a0a0b0;
-  --color-card: #111118;
+  --color-muted: #94a3b8;
+  --color-card: #12121a;
   --color-card-border: #1e1e2e;
   --color-card-hover: #1a1a28;
 
@@ -27,22 +26,22 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Grid overlay */
+/* Subtle grid overlay */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+    linear-gradient(rgba(139, 92, 246, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
   pointer-events: none;
   z-index: 0;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -51,7 +50,7 @@ body::before {
 
 ::-webkit-scrollbar-thumb {
   background: #2a2a3a;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -62,14 +61,4 @@ body::before {
 ::selection {
   background-color: rgba(139, 92, 246, 0.3);
   color: #fff;
-}
-
-/* Terminal cursor blink */
-@keyframes terminal-blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
 }

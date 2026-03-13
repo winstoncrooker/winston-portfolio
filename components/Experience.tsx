@@ -30,26 +30,22 @@ const experiences = [
 export default function Experience() {
   return (
     <div>
-      {/* Section title */}
-      <motion.p
-        className="font-mono text-lg text-green mb-12"
+      <motion.h2
+        className="text-2xl md:text-3xl font-bold text-foreground mb-10"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.5 }}
       >
-        $ git log --oneline
-      </motion.p>
+        Experience
+      </motion.h2>
 
       {/* Timeline container */}
       <div className="relative">
         {/* Vertical timeline line */}
-        {/* Mobile: left-aligned */}
         <div className="absolute left-2 top-0 w-px h-full bg-card-border md:hidden" />
-        {/* Desktop: center-aligned */}
         <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-full bg-card-border hidden md:block" />
 
-        {/* Timeline entries */}
         {experiences.map((exp, index) => (
           <TimelineItem
             key={exp.year}

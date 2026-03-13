@@ -5,16 +5,16 @@ import ProjectCard from "./ProjectCard";
 
 const projects = [
   {
-    title: "cosmic4796.xyz",
+    title: "AI Task Runner",
     description:
-      "Terminal-style portfolio with real-time Discord presence, WebSocket server, and built-in music player.",
-    tags: ["Next.js", "TypeScript", "WebSocket"],
-    status: "LIVE" as const,
+      "Automated development pipeline connecting AI desktop agents to CLI tools for hands-free build-test-deploy workflows.",
+    tags: ["Node.js", "Bash", "Automation"],
+    status: "ACTIVE" as const,
   },
   {
     title: "Portfolio v2",
     description:
-      "This site. A hybrid terminal/professional portfolio built entirely with AI-assisted development.",
+      "This site. A clean, modern portfolio built entirely with AI-assisted development.",
     tags: ["Next.js", "Tailwind", "Framer Motion"],
     status: "LIVE" as const,
   },
@@ -41,10 +41,10 @@ export default function Projects() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
-        className="font-mono text-green text-lg mb-12"
+        transition={{ duration: 0.5 }}
+        className="text-2xl md:text-3xl font-bold text-foreground mb-10"
       >
-        $ ls ~/projects
+        Projects
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -25,39 +25,39 @@ export default function TimelineItem({
           absolute top-6 z-10
           left-2 -translate-x-1/2
           md:left-1/2 md:-translate-x-1/2
-          w-3 h-3 rounded-full bg-purple ring-2 ring-purple/30
+          w-3 h-3 rounded-full bg-purple ring-2 ring-purple/20
         `}
       />
 
-      {/* Card */}
+      {/* Mobile card */}
       <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: index * 0.15, duration: 0.5 }}
+        transition={{ delay: index * 0.1, duration: 0.5 }}
         className="pl-10 md:hidden"
       >
-        <div className="bg-card rounded-lg border border-card-border p-6">
-          <p className="text-green font-mono text-sm font-bold mb-2">{year}</p>
-          <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
+        <div className="bg-card rounded-xl border border-card-border p-6">
+          <p className="text-purple-light font-mono text-sm font-medium mb-2">{year}</p>
+          <h3 className="text-foreground font-semibold text-lg mb-2">{title}</h3>
           <p className="text-muted text-sm leading-relaxed">{description}</p>
         </div>
       </motion.div>
 
       {/* Desktop card */}
       <motion.div
-        initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ delay: index * 0.15, duration: 0.5 }}
+        transition={{ delay: index * 0.1, duration: 0.5 }}
         className={`
           hidden md:block md:w-[calc(50%-2rem)]
           ${isLeft ? "md:mr-auto md:text-right" : "md:ml-auto md:text-left"}
         `}
       >
-        <div className="bg-card rounded-lg border border-card-border p-6">
-          <p className="text-green font-mono text-sm font-bold mb-2">{year}</p>
-          <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
+        <div className="bg-card rounded-xl border border-card-border p-6">
+          <p className="text-purple-light font-mono text-sm font-medium mb-2">{year}</p>
+          <h3 className="text-foreground font-semibold text-lg mb-2">{title}</h3>
           <p className="text-muted text-sm leading-relaxed">{description}</p>
         </div>
       </motion.div>

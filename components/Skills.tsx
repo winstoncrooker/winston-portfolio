@@ -51,25 +51,23 @@ export default function Skills() {
 
   return (
     <div>
-      {/* Section title */}
-      <motion.p
-        className="font-mono text-lg text-green mb-12"
+      <motion.h2
+        className="text-2xl md:text-3xl font-bold text-foreground mb-10"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.5 }}
       >
-        $ cat skills.json
-      </motion.p>
+        Skills
+      </motion.h2>
 
-      {/* Skill categories */}
       {categories.map((category) => {
         const categoryBlock = (
-          <div key={category.label} className="mb-8">
+          <div key={category.label} className="mb-6">
             <motion.p
-              className="text-muted text-sm uppercase tracking-wider mb-4 font-mono"
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="text-muted text-sm uppercase tracking-wider mb-3"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3 }}
             >

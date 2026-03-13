@@ -16,19 +16,15 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
 
-  // Glass-morphism on scroll past 80% of viewport height
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > window.innerHeight * 0.8);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // IntersectionObserver to track active section
   useEffect(() => {
     const sectionIds = navLinks.map((link) => link.href.replace("#", ""));
     const observers: IntersectionObserver[] = [];
@@ -57,7 +53,6 @@ export default function Navbar() {
     };
   }, []);
 
-  // Smooth scroll handler
   const handleNavClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
       e.preventDefault();
@@ -83,9 +78,9 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Terminal prompt — desktop only */}
-          <span className="hidden md:block font-mono text-sm text-muted select-none">
-            visitor@winston:~$
+          {/* Logo / Name */}
+          <span className="text-sm font-semibold text-foreground tracking-wide">
+            WC
           </span>
 
           {/* Desktop nav links */}
@@ -95,7 +90,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`font-mono text-sm transition-colors duration-200 hover:text-purple ${
+                className={`text-sm transition-colors duration-200 hover:text-purple ${
                   activeSection === link.href.replace("#", "")
                     ? "text-purple"
                     : "text-muted"
@@ -115,17 +110,17 @@ export default function Navbar() {
             <motion.span
               animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.2 }}
-              className="block w-6 h-0.5 bg-muted"
+              className="block w-5 h-0.5 bg-muted"
             />
             <motion.span
               animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
               transition={{ duration: 0.2 }}
-              className="block w-6 h-0.5 bg-muted"
+              className="block w-5 h-0.5 bg-muted"
             />
             <motion.span
               animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.2 }}
-              className="block w-6 h-0.5 bg-muted"
+              className="block w-5 h-0.5 bg-muted"
             />
           </button>
         </div>
@@ -135,7 +130,6 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -144,8 +138,6 @@ export default function Navbar() {
               className="fixed inset-0 bg-black/60 z-40 md:hidden"
               onClick={() => setMobileOpen(false)}
             />
-
-            {/* Panel */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -154,15 +146,12 @@ export default function Navbar() {
               className="fixed top-0 right-0 h-full w-72 bg-background border-l border-card-border z-50 md:hidden"
             >
               <div className="flex flex-col pt-24 px-8 gap-6">
-                <span className="font-mono text-xs text-muted mb-2">
-                  visitor@winston:~$
-                </span>
                 {navLinks.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className={`font-mono text-lg transition-colors duration-200 hover:text-purple ${
+                    className={`text-lg transition-colors duration-200 hover:text-purple ${
                       activeSection === link.href.replace("#", "")
                         ? "text-purple"
                         : "text-muted"

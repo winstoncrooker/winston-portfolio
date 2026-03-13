@@ -17,20 +17,20 @@ export default function SkillBadge({ name, color, index }: SkillBadgeProps) {
       className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-card-border transition-all duration-300 cursor-default"
       style={{
         borderColor: hovered ? color : undefined,
-        boxShadow: hovered ? `0 0 12px ${color}33` : "none",
+        boxShadow: hovered ? `0 0 12px ${color}22` : "none",
       }}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.05, duration: 0.3 }}
+      transition={{ delay: index * 0.04, duration: 0.3 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <span
-        className="inline-block w-1 h-1 rounded-full flex-shrink-0"
+        className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
         style={{ backgroundColor: color }}
       />
-      <span className="text-sm font-mono text-white">{name}</span>
+      <span className="text-sm text-foreground">{name}</span>
     </motion.span>
   );
 }
