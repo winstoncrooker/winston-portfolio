@@ -34,13 +34,6 @@ const projects = [
     tags: ["Node.js", "Bash", "Automation"],
     status: "ACTIVE" as const,
   },
-  {
-    title: "Discord Bots",
-    description:
-      "Custom bots for moderation, automation, and API integrations across multiple servers.",
-    tags: ["JavaScript", "Python", "Discord.js"],
-    status: "ACTIVE" as const,
-  },
 ];
 
 export default function Projects() {
@@ -58,7 +51,7 @@ export default function Projects() {
       </motion.h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects.slice(0, 4).map((project, index) => (
+        {projects.map((project, index) => (
           <ProjectCard
             key={project.title}
             title={project.title}
@@ -69,21 +62,6 @@ export default function Projects() {
             index={index}
           />
         ))}
-      </div>
-      {/* Fifth card centered below */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-        <div className="md:col-start-1 md:col-end-2 md:mx-auto md:w-full max-w-md md:max-w-none md:col-span-2 md:flex md:justify-center">
-          <div className="md:w-1/2">
-            <ProjectCard
-              title={projects[4].title}
-              description={projects[4].description}
-              tags={projects[4].tags}
-              status={projects[4].status}
-              url={projects[4].url}
-              index={4}
-            />
-          </div>
-        </div>
       </div>
     </div>
   );
