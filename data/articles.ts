@@ -1,0 +1,107 @@
+export interface Article {
+  slug: string;
+  title: string;
+  date: string;
+  readTime: string;
+  description: string;
+  linkedinUrl: string;
+  content: string[];
+}
+
+export const articles: Article[] = [
+  {
+    slug: "claude-code-cowork-part-2",
+    title: "Claude Code and Claude Cowork Together: Part 2",
+    date: "March 7, 2026",
+    readTime: "4 min read",
+    description: "Closing the loop — how I made two AI agents collaborate autonomously overnight, building an entire app while I slept.",
+    linkedinUrl: "https://www.linkedin.com/pulse/claude-code-cowork-together-part-2-winston-crooker-phrrc/",
+    content: [
+      "A few days ago I wrote about connecting Claude Code and Cowork with a bash script. The idea was simple. Cowork plans, writes a task file to a shared folder, a watcher script detects it and sends it to Claude Code, and Claude Code builds and deploys. Two AI agents talking to each other through a folder on my desktop.",
+      "People liked it. One commenter pointed out the obvious next step: what if Cowork could read Claude Code's output and keep their context perfectly synced? What if the loop didn't need me at all?",
+      "So I built that. And then I went to sleep.",
+      "Here's what happened.",
+      "The problem with the first version was that the bridge only went one way. Cowork could send tasks to Claude Code, but once Claude Code finished building, it just sat there. I had to go back to Cowork, tell it what happened, figure out what to do next, and kick off another task. The middleman problem wasn't gone. It just moved.",
+      "The fix was giving Cowork eyes and a sense of timing. Here's how it works now. Cowork writes a task file to a shared folder, same as before. The bridge script picks it up and sends it to Claude Code, same as before. But now when Claude Code finishes, it writes a detailed report back to a results folder. What it built, what files it changed, the build output, and exactly how to verify each feature.",
+      "Cowork knows to check for that report. Every 30 seconds or so it runs a line count on the result file. Two lines means Claude Code is still working. When it jumps to a hundred plus lines, Cowork knows it's done. Simple. No webhooks, no APIs, just checking how long a file is.",
+      "Then Cowork reads the report and does something Claude Code can't do. It opens Chrome. Cowork uses the Claude in Chrome extension to navigate to the actual deployed site. It takes screenshots, clicks through the UI, checks for console errors, looks at whether the layout is broken on mobile, and compares what it sees to what Claude Code said it built. If a tooltip is getting clipped or a chart is showing wrong numbers or a button isn't responding, Cowork catches it.",
+      "And then it writes the next task. Bug fixes from what it just found, plus whatever new features are next on the list. Drops it in the shared folder. The bridge picks it up. Claude Code starts building again. Cowork goes back to polling. No human in the loop. At all.",
+      "The first real test was on PremiumTracker, a covered call management platform I've been building. I set up the pipeline, gave Cowork a rough list of what the app needed, and went to bed. Not in a \"I checked on it every twenty minutes\" way. I actually went to sleep.",
+      "I woke up and checked the results folder. Twenty plus completed tasks. Each task had three to five features in it. Cowork had written detailed task files, Claude Code had built and deployed each one, Cowork had tested every deployment in Chrome, caught bugs, filed fixes in the next task, and kept the cycle going all night. Interactive charts. CSV import and export. Profit and loss reports. Tax summaries. Position alerts. Trade comparison tools. A global search with keyboard shortcuts. Scroll animations. Accessibility improvements. A calendar view. Dozens of bug fixes that Cowork found by actually looking at the app in a browser. The whole app was basically rebuilt overnight.",
+      "The reason this works as an infinite loop and not just a one-shot relay is context. Every result file Claude Code writes back is basically a brain dump. What it built, every file it touched, the exact build output, and step by step instructions on how to verify each feature. When Cowork reads that, it's not starting from scratch. It knows the current state of the entire project. It knows what just changed. It knows what the build output looked like. And after it tests in Chrome, it knows what's actually working and what's not. So when it writes the next task, that task is informed by everything that happened before it. The two agents aren't just passing messages back and forth. They're building on each other's work with full context of where the project stands. That's what makes it a real collaboration and not just a fancy cron job.",
+      "The thing that still kind of blows my mind is how simple the infrastructure is. The task files are just markdown. The result files are just markdown. Cowork polls with wc -l. The bridge sends text with tmux send-keys. There's no orchestration framework. There's no database. There's no server. Two AI agents collaborated on building a real application through a shared folder and a bash script.",
+      "The separation of concerns is what makes it work so well. Claude Code is incredible at writing code, running builds, and deploying. But it's completely blind. It has no idea what the app actually looks like in a browser. Cowork is great at looking at things, reasoning about what's wrong, and planning what to build next. But it can't edit code. They each do the thing the other one can't, and the bridge just moves text between them.",
+      "In the first article I said \"stop being the middleman, let them talk.\" Turns out I was still the middleman. I just didn't realize it yet. Now they actually talk. And they don't need me to be awake for it.",
+    ],
+  },
+  {
+    slug: "claude-code-cowork-together",
+    title: "Claude Code and Claude Cowork Together",
+    date: "March 4, 2026",
+    readTime: "4 min read",
+    description: "How I connected two AI agents with a bash script and a shared folder — and had a full website built and deployed in 14 minutes.",
+    linkedinUrl: "https://www.linkedin.com/pulse/claude-code-cowork-together-winston-crooker-oeruc/",
+    content: [
+      "Last night I accidentally built something that kind of blew my mind. I got two AI agents to collaborate on building software, and I just watched.",
+      "Let me back up.",
+      "I use two Claude-powered tools every day. The first is Cowork, Claude's desktop app. I brainstorm with it, plan features, talk through architecture. It can browse the web, read my files, control Chrome, manage my calendar. It's my thinking partner. The second is Claude Code, a terminal-based coding agent. It writes code, runs commands, deploys to production. It's my execution engine.",
+      "The problem is they don't know each other exists. Every time I'd finish planning something in Cowork, I'd have to copy the plan, switch terminals, paste it into Claude Code, and manually kick things off. I was the middleman between two AIs that could've been doing this on their own.",
+      "So I connected them.",
+      "The setup is ridiculously simple. Cowork and I plan something together, and when I'm ready I tell Cowork to send it to Claude Code. Cowork writes the full plan to a shared folder as a task file. A watcher script I wrote detects the new file and pipes the content directly into a live Claude Code session running in tmux. Claude Code picks it up and starts building. Writing files, running commands, installing packages, deploying. I watch it happen in real time from another terminal tab. Or I go make food. Either way.",
+      "The whole bridge is about 100 lines of bash. No frameworks. No APIs. Just a folder, a file watcher, and tmux send-keys. That's it. That's the entire infrastructure.",
+      "To prove it worked I had Cowork plan my entire personal website from scratch. We talked through everything. Dark techy aesthetic, live stock charts for my portfolio, Spotify integration showing what I'm currently listening to, a chess section pulling my live ratings, and a blog system. I said \"send it.\" Fourteen minutes later it was live on Cloudflare Pages. Working stock data. Working Spotify. Private GitHub repo. Everything.",
+      "Then I said \"the portfolio calculations are wrong, fix it.\" Cowork wrote the fix, sent it through the bridge, Claude Code patched it and redeployed. Same session. No restart. No re-explaining context.",
+      "I kept going. Fixed mobile responsiveness. Added my chess ratings. Set up a contact page. Each task went through the bridge into the same persistent Claude Code session. It just kept building.",
+      "If you want to try this yourself, here's what you need. macOS or Linux will work out of the box since tmux runs natively on both. If you're on a Mac it's just brew install tmux. Windows doesn't support tmux natively, but it works perfectly through WSL, and if you're a developer on Windows you probably already have that set up. Beyond that you just need Claude Code running in your terminal, access to Cowork, and enough bash knowledge to write a script that watches a folder and runs a command. Ten minutes of setup, honestly.",
+      "But the bridge by itself isn't what made me realize this is more than a cool hack. What made it click is what Cowork can do that Claude Code can't. Cowork can control Chrome. That means it can actually open the site Claude Code just deployed, click through it, spot bugs visually, and write up exactly what's broken. Then it sends that back through the bridge and Claude Code fixes and redeploys instantly.",
+      "You end up with a full loop. Plan, build, deploy, test, fix, redeploy. The human involvement is basically just saying \"go.\"",
+      "That's not two tools anymore. That's a team.",
+      "I think this is a pattern we're going to see a lot more of. AI agents orchestrating other AI agents, with humans setting direction instead of doing labor. Cowork is great at thinking. Claude Code is great at doing. Connected, they cover the full loop from \"what should we build\" to \"it's live\" without me being the bottleneck in between.",
+      "And the wildest part is how little infrastructure it took. A shared folder and a bash script created a legitimate multi-agent workflow. No complex orchestration framework. No custom API integration. That tells me we're way closer to this being normal than most people realize.",
+      "The bridge is primitive. It's duct tape. But duct tape that works is still a bridge.",
+      "Stop being the middleman. Let them talk.",
+    ],
+  },
+  {
+    slug: "coding-with-ai-agents",
+    title: "This Is Why You Should Be Coding With AI Agents All the Time",
+    date: "February 19, 2026",
+    readTime: "4 min read",
+    description: "The gap between developers using AI agents and those who aren't is growing fast. Here's why you should be on the right side of it.",
+    linkedinUrl: "https://www.linkedin.com/pulse/why-you-should-coding-ai-agents-all-time-winston-crooker-yee2c/",
+    content: [
+      "The gap between developers using AI agents and those who aren't is already visible — and it's growing faster than most people realize. Yet people still hear \"AI\" and \"coding\" in the same sentence and picture someone copying and pasting ChatGPT output. That couldn't be farther from the truth. Real developers have moved well beyond ChatGPT, and if you're not coding with AI agents you're already behind. There's still hope for anyone who hasn't started, but the clock is ticking.",
+      "For anyone who doesn't already know what agents do — an AI agent isn't a chatbot you paste code into and hope for the best. It's a tool that sits inside your development environment, reads your entire codebase, understands the context of what you're building, and actively works alongside you. It can write code, run it, read the error, and fix it — on its own. It can refactor a function, update the files that depend on it, and check that nothing broke. Tools like Claude Code operate directly in your terminal, understanding your full project structure and making changes across multiple files with context no chatbot could ever have. The difference between that and copying a ChatGPT response into your editor is the difference between having an assistant who knows your project inside and out, and asking a stranger on the street for directions.",
+      "You handle the thinking. The agent handles the building. That's the real workflow.",
+      "The obvious selling point of coding with agents is speed, and yes, you will move faster. But speed is the least interesting thing that happens. What agents actually give you is mental energy back. The tedious, repetitive parts of coding — boilerplate, syntax, hunting down bugs — eat up cognitive bandwidth that could be spent on the decisions that actually shape a project. When an agent handles the grunt work, you spend more time thinking about architecture, design, and how your system actually fits together.",
+      "I use Claude Code daily, and I shipped the entire premium tracker for OptionsOn — a covered call management platform — in a single day. Not because the agent did all the thinking for me, but because it handled the implementation overhead while I focused on what the product actually needed to do. You're not coding less, you're thinking more. And thinking is the part that makes the difference between software that works and software that's good.",
+      "None of this means you can be a bad developer and let the agent carry you. If anything, agents raise the bar. When code is being generated faster than you can read it, you need to actually understand what's in front of you — because you're the one shipping it. A developer who doesn't understand what an agent is producing will just ship broken or brittle code at a higher velocity. The agent amplifies whatever skill level you bring to the table, which means it amplifies your blind spots too. You still need to know why a piece of code works, when an approach is wrong, and when to throw out what the agent gave you and start again. The floor hasn't changed. The ceiling has.",
+      "There's a common argument that coding with AI means you won't actually learn anything — that you're just watching code appear without understanding it. It's a reasonable concern, but it gets the reality backwards. Developers using agents are encountering more patterns, solving more problems, and finishing more projects than they ever could alone. And there's no better way to learn than building. When you ship three projects in the time it used to take to ship one, you don't learn a third as much — you learn three times as much. You see more edge cases, make more architectural decisions, and run into more of the problems that actually teach you things. The learning doesn't disappear when you use an agent. It compounds.",
+      "Same starting point. Different tools. The gap compounds faster than most people realize.",
+      "The gap between developers who use agents and those who don't is already opening up on real teams, in real hiring processes, right now. Developers with agents are scoping projects more ambitiously, delivering faster, and operating at a level that's becoming the new baseline expectation. The ones who aren't are still capable, still skilled, but they're running the same race with more weight. That gap isn't going to close on its own, and the longer it goes on, the harder it becomes to close at all.",
+      "This isn't about replacing developers — it's about which ones are choosing to extend what they're capable of. The developers who thrive in the next decade won't be the ones who resisted these tools. They'll be the ones who mastered them early enough to make them their own.",
+      "The question was never whether AI belongs in the development process — that's already been answered. The only question left is whether you're the one holding the reins.",
+    ],
+  },
+  {
+    slug: "im-16-and-i-use-ai-every-day",
+    title: "I'm 16 and I Use AI Every Day. Here's What Most People Are Missing.",
+    date: "February 16, 2026",
+    readTime: "4 min read",
+    description: "Growing up in the middle of the fastest technological shift in modern history — and why the conversation around AI in education is broken.",
+    linkedinUrl: "https://www.linkedin.com/pulse/im-16-i-use-ai-every-day-heres-what-most-people-missing-crooker-29e8c/",
+    content: [
+      "Growing up in the middle of the fastest technological shift in modern history is a strange experience. Every day I hear two completely different versions of reality. My teachers tell me AI is an easy way out, a crutch that will make me less capable in the long run. Meanwhile, my dad, a software engineer with 30+ years of experience, uses AI daily to improve his output and free up time for higher-level work. Same technology, opposite conclusions.",
+      "Now obviously, we all carry biases even if we don't think we do. Mine come from watching my father's career up close. But I've also spent time looking at what the research actually says, and it tells a more interesting story than either side usually admits.",
+      "Here's where educators tend to stop listening. They hear \"I use AI\" and immediately think \"shortcut.\" But a study from Harvard Business School and Boston Consulting Group found that when workers used AI for tasks it was well-suited for, they saw a nearly 40% increase in performance compared to those who didn't use it. That's not a shortcut. That's a tool making people meaningfully better at what they do. If a 40% improvement showed up in any other context, a new teaching method, a new textbook, a new curriculum, educators would be celebrating it. Not banning it.",
+      "To be fair, the other side has evidence too. A study in the British Journal of Educational Technology found that college students who revised essays with ChatGPT actually improved their writing the most, even outperforming students who worked with human writing coaches. But here's the catch: those students didn't retain as much about the topic they were writing about. Better output, less learning. That's the study educators love to cite.",
+      "But here's what that argument misses. Those students were handed ChatGPT with zero guidance. No one taught them how to use it as a thinking tool. No one said \"use this to check your reasoning\" or \"use this to break down a concept you're stuck on.\" They used it the way anyone uses a tool when they've had no training: poorly. That's not an AI problem. That's a teaching problem. If you hand a kid a calculator before they understand multiplication, they won't learn anything. But nobody is arguing we should ban calculators.",
+      "From what I see, the biggest issue surrounding AI in education is how people are being introduced to it. I hear my teachers talk about how harmful AI is, but their main experience with it is being forced to teach from a poorly designed curriculum where AI handles all the grading. Think about that. The people telling students AI is bad are forming that opinion from a system they had no say in, one that was implemented badly and stripped away the parts of teaching they actually care about. Of course they hate it. They were handed the worst possible version of AI and told it was the future.",
+      "And there are real limits. Good teaching involves knowing when to push a student and when to let them struggle, reading the room in a way no algorithm can. Teachers structure how you encounter information, challenge you at the right moments, and adjust based on who you are as a person. AI is not going to replace that. We aren't at that point now, and we never will be.",
+      "But what most people haven't figured out is that replacing humans was never the point. AI is a tool meant to help us do more with what we already know.",
+      "At 16, I've used it to build a coordination app that helps my family manage who watches my younger brother and when. I've built tools that support my dad's options trading strategy. These are real, functional applications that solve real problems, the kind of projects most people don't touch until college or later.",
+      "If there's one thing you take away from this, it's that the conversation around AI is broken. Not because people disagree, but because they're not listening to each other. My teachers aren't wrong for worrying about what AI does to learning. My dad isn't wrong for using it to be better at his job. And I'm not wrong for building real things at 16 that create value for the people around me.",
+      "The pushback is good. It means we're taking this seriously. But fear isn't a strategy. Teaching people how to use AI responsibly is. And right now, the people who understand that the least are the ones making the rules about it.",
+    ],
+  },
+];
